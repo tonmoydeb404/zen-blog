@@ -1,0 +1,21 @@
+.feed {
+  &_main {
+    @apply col-span-1 lg:col-span-8 flex flex-col gap-8;
+  }
+
+  &_sidebar {
+    @apply col-span-1 lg:col-span-4;
+  }
+
+  &_header {
+    @apply col-span-1 lg:col-span-12;
+  }
+
+  &_wrapper {
+    @apply container grid grid-cols-1 lg:grid-cols-12 py-10 gap-10;
+  }
+
+  &_featured {
+    @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5;
+  }
+}

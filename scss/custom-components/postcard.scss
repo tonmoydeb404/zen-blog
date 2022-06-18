@@ -1,0 +1,59 @@
+.postcard {
+  @apply flex gap-5 p-3 items-stretch bg-white shadow-sm rounded-sm border border-gray-300;
+
+  &_media {
+    @apply relative w-[250px] h-full;
+  }
+
+  &_header {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  &_body {
+    @apply flex-1;
+  }
+
+  &_tags {
+    @apply flex items-center gap-1.5;
+
+    &_item {
+      @apply px-1.5 py-1 text-xs font-semibold border border-green-600 bg-green-100 text-green-700 rounded-sm;
+
+      &.uncategorized {
+        @apply border-gray-600 bg-gray-100 text-gray-700;
+      }
+    }
+  }
+
+  &_time {
+    @apply flex items-center gap-1 text-sm text-gray-500;
+  }
+
+  &_title {
+    @apply text-xl font-semibold;
+  }
+
+  &_text {
+    @apply text-sm text-gray-700 mt-1;
+  }
+
+  &_actions {
+    @apply flex gap-2 mt-6 items-center justify-between;
+  }
+
+  &_btn {
+    @apply px-3 font-semibold py-1 flex bg-green-600 text-white rounded-sm text-base;
+  }
+
+  &_bookmark {
+    @apply px-2 font-semibold py-2 flex rounded-sm text-base duration-200;
+
+    &.bookmarked {
+      @apply bg-gray-900 text-gray-50;
+    }
+
+    &:not(.bookmarked) {
+      @apply bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-gray-50;
+    }
+  }
+}

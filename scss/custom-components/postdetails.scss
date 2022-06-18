@@ -1,0 +1,17 @@
+.postdetails_body {
+  h2 {
+    @apply font-bold text-2xl my-3;
+  }
+
+  p {
+    @apply font-normal leading-7 my-2;
+  }
+
+  pre {
+    @apply bg-gray-800 overflow-x-auto py-5 pl-5 text-white my-1;
+  }
+
+  a {
+    @apply text-green-600 font-medium hover:text-green-700 duration-200;
+  }
+}
