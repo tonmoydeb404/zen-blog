@@ -1,10 +1,31 @@
+import Head from "next/head";
 import PostDetails from "../../components/PostDetails";
 import Sidebar from "../../components/Sidebar";
+import { siteInfo } from "../../lib/constant";
 import { fetchPost, fetchPosts } from "../../services";
 
 const Post = ({ post }) => {
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="title" content={post.title} />
+        <meta name="description" content={post.description} />
+        <meta name="keywords" content={post.tags?.join(",")} />
+        <meta name="author" content={post.authorInfo?.authorName} />
+
+        {/* open graph */}
+        <meta property="og:title" content={post.title} />
+        <meta property="og:site_name" content={siteInfo.fullName} />
+        <meta
+          property="og:url"
+          content={`${siteInfo.url}/posts/${post.slug}`}
+        />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={post.thumbnail.url} />
+      </Head>
       <section className="feed_wrapper">
         <main className="feed_main">
           <PostDetails
@@ -17,6 +38,7 @@ const Post = ({ post }) => {
             categories={post.categories}
             slug={post.slug}
             comments={post.comments}
+            authorInfo={post.authorInfo}
           />
         </main>
 

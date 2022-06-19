@@ -1,7 +1,9 @@
+import Head from "next/head";
 import { useMemo } from "react";
 import PostCard from "../components/PostCard";
 import PostCardFeatured from "../components/PostCardFeatured";
 import Sidebar from "../components/Sidebar";
+import { siteInfo } from "../lib/constant";
 import { fetchPosts } from "../services";
 
 export default function Home({ posts = [] }) {
@@ -13,6 +15,21 @@ export default function Home({ posts = [] }) {
 
   return (
     <>
+      <Head>
+        <title>{siteInfo.fullName}</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="title" content={siteInfo.fullName} />
+        <meta name="description" content={siteInfo.description} />
+        <meta name="keywords" content={siteInfo.keywords} />
+
+        {/* open graph */}
+        <meta property="og:title" content={siteInfo.fullName} />
+        <meta property="og:site_name" content={siteInfo.fullName} />
+        <meta property="og:url" content={siteInfo.url} />
+        <meta property="og:description" content={siteInfo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={siteInfo.ogImage} />
+      </Head>
       <section className="feed_wrapper">
         {featuredPosts && featuredPosts.length ? (
           <header className="feed_header feed_featured">
