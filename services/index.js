@@ -99,9 +99,7 @@ export const fetchPost = async (slug = false) => {
           }
         }
         authorInfo {
-          authorBio {
-            html
-          }
+          authorBio
           authorImage {
             url
           }
