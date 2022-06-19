@@ -10,18 +10,14 @@ const NavLinks = ({
   ],
 }) => {
   return navlinks && navlinks.length ? (
-    <ul
-      className={`nav_links flex items-center gap-5 text-gray-900 ${className}`}
-    >
+    <ul className={`nav_links ${className}`}>
       {navlinks.map((navLink) => (
         <Link
           key={navLink.id}
           href={navLink.url}
           target={navLink.newTab ? "_blank" : "_self"}
         >
-          <span className="nav_links_item font-medium  cursor-pointer hover:text-green-600 duration-200">
-            {navLink.title}
-          </span>
+          <span className="nav_links_item">{navLink.title}</span>
         </Link>
       ))}
     </ul>

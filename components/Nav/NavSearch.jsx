@@ -29,27 +29,23 @@ const NavSearch = () => {
   return (
     <>
       <button
-        className="nav_search_btn text-2xl p-1 rounded-full hover:bg-gray-100 text-gray-900 duration-200"
+        className="nav_search_btn "
         onClick={() => setModal((prevState) => !prevState)}
       >
         <MdSearch />
       </button>
 
       <div
-        className={`modal fixed w-full min-h-screen top-0 left-0 flex items-center justify-center flex-col bg-black/30 backdrop-blur-sm overflow-hidden duration-200 ${
-          modal
-            ? "opacity-100 pointer-events-auto"
-            : " opacity-0 pointer-events-none"
-        }`}
+        className={`nav_search_modal ${modal ? "show" : "hide"}`}
         id="modal"
         onClick={(e) => e.target.id === "modal" && setModal(false)}
       >
-        <form className="search_form" onSubmit={handleSubmit}>
-          <div className="search_input_box bg-white flex items-center px-5 py-3 gap-2 text-base rounded shadow shadow-gray-400">
+        <form className="nav_search_form" onSubmit={handleSubmit}>
+          <div className="nav_search_input_box ">
             <MdSearch className="text-xl" />
             <input
               type="search"
-              className="search_input outline-none w-[500px]"
+              className="nav_search_input "
               placeholder="Search article"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -57,13 +53,13 @@ const NavSearch = () => {
             />
           </div>
 
-          <div className="search_recomendations bg-white mt-5 px-5 py-4 rounded">
+          <div className="nav_search_suggest">
             {categoriesData && categoriesData.length ? (
               <>
-                <h3 className="search_recomendations_title font-medium text-base">
-                  visit articles category:{" "}
+                <h3 className="nav_search_suggest_title ">
+                  visit articles category:
                 </h3>
-                <div className="search_recomendations_list mt-2 flex flex-wrap gap-1">
+                <div className="nav_search_suggest_list ">
                   {categoriesData.map((category) => (
                     <Link
                       key={category.node?.id}
@@ -71,7 +67,7 @@ const NavSearch = () => {
                     >
                       <a
                         onClick={() => setModal(false)}
-                        className="text-sm px-2 py-1 border border-green-600 rounded-sm hover:bg-green-600 hover:text-white duration-200"
+                        className="nav_search_suggest_item"
                       >
                         {category.node?.title}
                       </a>
@@ -80,9 +76,9 @@ const NavSearch = () => {
                 </div>
               </>
             ) : (
-              <p className="text-center flex items-center justify-center gap-1 text-gray-600">
+              <p className="nav_search_suggest_none">
                 {" "}
-                <BiSad /> sorry no recomendations
+                <BiSad /> sorry no suggestions
               </p>
             )}
           </div>

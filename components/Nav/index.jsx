@@ -6,26 +6,26 @@ import NavTheme from "./NavTheme";
 const Nav = () => {
   return (
     <>
-      <nav className="nav py-3 shadow-sm shadow-gray-300 sticky top-0 bg-white z-[99999]">
-        <div className="nav_container container flex items-center gap-10 flex-wrap">
+      <nav className="nav">
+        <div className="nav_container">
           <Link href={"/"}>
             <a>
-              <h1 className="nav_brand text-2xl font-bold cursor-pointer">
-                <span className="text-green-600">NEXT</span> Blog
+              <h1 className="nav_brand ">
+                <span>NEXT</span> Blog
               </h1>
             </a>
           </Link>
 
           <NavLinks className="hidden md:flex" />
 
-          <div className="nav_actions ml-auto inline-flex items-center gap-5">
+          <div className="nav_actions">
             <NavTheme />
             <NavSearch />
           </div>
         </div>
       </nav>
 
-      <div className="nav_container-mobile container mt-0.5 py-2 bg-white overflow-x-auto shadow-sm shadow-gray-300 md:hidden ">
+      <div className="nav_container-mobile ">
         <NavLinks className="text-sm" />
       </div>
     </>
