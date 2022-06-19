@@ -1,0 +1,13 @@
+.categories {
+  &_item {
+    @apply flex items-center;
+
+    &_title {
+      @apply font-medium flex items-center gap-x-1;
+    }
+
+    &_counter {
+      @apply ml-auto px-1 text-xs font-bold py-1 text-gray-100 inline-block bg-green-600 min-w-[25px] text-center;
+    }
+  }
+}

@@ -6,10 +6,10 @@ const Bookmarks = () => {
   const { bookmarksData } = useBookmarks();
 
   return (
-    <div className="bookmarks py-3 px-4 border border-gray-300 rounded-sm">
-      <h3 className="bookmarks_header text-xl font-semibold mb-3">Bookmarks</h3>
+    <div className="sidebarbox bookmarks">
+      <h3 className="sidebarbox_header">Bookmarks</h3>
 
-      <div className="bookmarks_body flex-col gap-3 flex">
+      <div className="sidebarbox_body">
         {bookmarksData && bookmarksData.length ? (
           bookmarksData.map((bookmark) => (
             <BookmarksItem
@@ -20,7 +20,7 @@ const Bookmarks = () => {
             />
           ))
         ) : (
-          <p className="bookmarks_none tect-sm text-gray-500 flex flex-col items-center gap-1 py-2">
+          <p className="sidebarbox_none">
             <span className="text-2xl">
               <BiSad />
             </span>

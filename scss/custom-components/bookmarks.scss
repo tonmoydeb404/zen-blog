@@ -1,0 +1,13 @@
+.bookmarks {
+  &_item {
+    @apply px-3 py-2 border border-gray-300;
+
+    &_title {
+      @apply text-base font-semibold mb-2;
+    }
+
+    &_text {
+      @apply text-xs truncate;
+    }
+  }
+}

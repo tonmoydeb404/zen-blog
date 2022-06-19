@@ -6,12 +6,10 @@ const Categories = () => {
   const { categoriesData } = useCategories();
 
   return (
-    <div className="categories py-3 px-4 border border-gray-300 rounded-sm">
-      <h3 className="categories_header text-xl font-semibold mb-3">
-        Categories
-      </h3>
+    <div className="sidebarbox categories">
+      <h3 className="sidebarbox_header text-xl">Categories</h3>
 
-      <div className="categories_body flex-col gap-3 flex">
+      <div className="sidebarbox_body">
         {categoriesData && categoriesData.length ? (
           categoriesData.map((category) => (
             <CategoriesItem
@@ -22,7 +20,7 @@ const Categories = () => {
             />
           ))
         ) : (
-          <p className="categories_none tect-sm text-gray-500 flex flex-col items-center gap-1 py-2">
+          <p className="sidebarbox_none">
             <span className="text-2xl">
               <BiSad />
             </span>

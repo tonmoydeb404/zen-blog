@@ -3,16 +3,16 @@ import { MdTag } from "react-icons/md";
 
 const CategoriesItem = ({ title, slug, posts }) => {
   return (
-    <div className="flex items-center">
+    <div className="categories_item">
       <Link href={`/categories/${slug}`}>
-        <a className="font-medium flex items-center gap-x-1">
+        <a className="categories_item_title">
           <MdTag className="text-green-600" />
           {title}
         </a>
       </Link>
 
       {posts && posts.length && (
-        <span className="ml-auto px-1 text-xs font-bold py-1 text-gray-100 inline-block bg-green-600 min-w-[25px] text-center">
+        <span className="categories_item_counter">
           {posts.length < 10 ? `0${posts.length}` : posts.length}
         </span>
       )}
