@@ -1,6 +1,8 @@
 import { MdComment, MdOutlineAddComment } from "react-icons/md";
 import CommentCard from "../Comment/CommentCard";
 import CommentForm from "../Comment/CommentForm";
+import PostDetailsAuthor from "./PostDetailsAuthor";
+import PostDetailsFooter from "./PostDetailsFooter";
 import PostDetailsHeader from "./PostDetailsHeader";
 
 const PostDetails = ({
@@ -13,6 +15,7 @@ const PostDetails = ({
   text,
   categories = [],
   comments = [],
+  authorInfo = {},
 }) => {
   return (
     <div>
@@ -29,6 +32,16 @@ const PostDetails = ({
         className="postdetails_body"
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
+
+      <PostDetailsFooter categories={categories} />
+
+      <PostDetailsAuthor
+        authorBio={authorInfo.authorBio}
+        authorImage={authorInfo.authorImage?.url}
+        authorName={authorInfo.authorName}
+        authorUrl={authorInfo.authorUrl}
+        className="mt-10"
+      />
 
       <div className="postdetails_commentform mt-10">
         <h3 className="postdetails_commentform_title font-semibold text-lg mb-4 flex items-center gap-1">
