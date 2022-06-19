@@ -98,6 +98,16 @@ export const fetchPost = async (slug = false) => {
             createdAt
           }
         }
+        authorInfo {
+          authorBio {
+            html
+          }
+          authorImage {
+            url
+          }
+          authorUrl
+          authorName
+        }
       }
     }
   `;

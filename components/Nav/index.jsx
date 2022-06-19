@@ -11,7 +11,7 @@ const Nav = () => {
           <Link href={"/"}>
             <a>
               <h1 className="nav_brand ">
-                <span>NEXT</span> Blog
+                <span>ZEN</span> Blog
               </h1>
             </a>
           </Link>
