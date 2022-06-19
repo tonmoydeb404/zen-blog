@@ -1,6 +1,7 @@
-import request, { gql } from "graphql-request";
+import request, { gql, GraphQLClient } from "graphql-request";
 
-const cmsAPI = process.env.NEXT_PUBLIC_CMS_APIKEY;
+const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_ENDPOINT;
+const cmsToken = process.env.CMS_API_TOKEN;
 
 export const fetchPosts = async () => {
   const query = gql`
@@ -34,7 +35,7 @@ export const fetchPosts = async () => {
     }
   `;
 
-  const results = await request(cmsAPI, query);
+  const results = await request(cmsEndpoint, query);
 
   return results.postsConnection?.edges;
 };
@@ -57,7 +58,7 @@ export const fetchCategories = async () => {
     }
   `;
 
-  const results = await request(cmsAPI, query);
+  const results = await request(cmsEndpoint, query);
 
   return results.categoriesConnection?.edges;
 };
@@ -89,11 +90,19 @@ export const fetchPost = async (slug = false) => {
             title
           }
         }
+        comments {
+          ... on Comment {
+            id
+            name
+            text
+            createdAt
+          }
+        }
       }
     }
   `;
 
-  const results = await request(cmsAPI, query, { slug });
+  const results = await request(cmsEndpoint, query, { slug });
 
   return results.post;
 };
@@ -130,7 +139,7 @@ export const fetchCategory = async (slug = false) => {
     }
   `;
 
-  const results = await request(cmsAPI, query, { slug });
+  const results = await request(cmsEndpoint, query, { slug });
 
   return results.category;
 };
@@ -162,7 +171,37 @@ export const fetchPostByQuery = async (q = false) => {
     }
   `;
 
-  const results = await request(cmsAPI, query, { q });
+  const results = await request(cmsEndpoint, query, { q });
 
   return results.posts;
+};
+
+export const submitComment = async (comment = {}, slug = false) => {
+  if (!comment.text || !slug) return false;
+
+  const mutationVariables = {
+    data: {
+      name: comment.name || null,
+      email: comment.email || null,
+      text: comment.text,
+      post: { connect: { slug } },
+    },
+  };
+
+  const mutation = gql`
+    mutation submitComment($data: CommentCreateInput!) {
+      createComment(data: $data) {
+        id
+      }
+    }
+  `;
+  const graphQLClient = new GraphQLClient(cmsEndpoint, {
+    headers: {
+      authorization: `Bearer ${cmsToken}`,
+    },
+  });
+
+  const results = await graphQLClient.request(mutation, mutationVariables);
+
+  return results.updatePost;
 };

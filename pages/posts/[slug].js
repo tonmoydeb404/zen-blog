@@ -15,6 +15,8 @@ const Post = ({ post }) => {
             id={post.id}
             text={post.description}
             categories={post.categories}
+            slug={post.slug}
+            comments={post.comments}
           />
         </main>
 
