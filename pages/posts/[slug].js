@@ -24,7 +24,10 @@ const Post = ({ post }) => {
         />
         <meta property="og:description" content={post.description} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={post.thumbnail.url} />
+        <meta
+          property="og:image"
+          content={post.thumbnail?.url || siteInfo.ogImage}
+        />
       </Head>
       <section className="feed_wrapper">
         <main className="feed_main">
