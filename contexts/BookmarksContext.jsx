@@ -17,7 +17,7 @@ export const BookmarksContextProvider = ({ children }) => {
 
   // get data on first render
   useEffect(() => {
-    const localeBookmarksData = localStorage.getItem("next-blog-bookmarks");
+    const localeBookmarksData = localStorage.getItem("zen-blog-bookmarks");
     if (localeBookmarksData !== null) {
       setBookmarksData(JSON.parse(localeBookmarksData));
     }
@@ -29,11 +29,11 @@ export const BookmarksContextProvider = ({ children }) => {
     if (!isMounted.current) {
       isMounted.current = true;
     } else {
-      const localeBookmarksData = localStorage.getItem("next-blog-bookmarks");
+      const localeBookmarksData = localStorage.getItem("zen-blog-bookmarks");
 
       if (JSON.parse(localeBookmarksData) !== bookmarksData) {
         localStorage.setItem(
-          "next-blog-bookmarks",
+          "zen-blog-bookmarks",
           JSON.stringify(bookmarksData)
         );
       }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { MdWarning } from "react-icons/md";
+import { useThemeContext } from "../../contexts/ThemeContext";
 import { submitComment } from "../../services";
 
 const CommentForm = ({ slug = null }) => {
@@ -18,9 +19,11 @@ const CommentForm = ({ slug = null }) => {
 
   const recaptchaSiteKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
 
+  const { theme } = useThemeContext();
+
   // get saved comment data from localstorage
   useEffect(() => {
-    let localCommentInfo = localStorage.getItem("next-blog-comment-data");
+    let localCommentInfo = localStorage.getItem("zen-blog-comment-data");
     if (localCommentInfo !== null) {
       const localCommentValue = JSON.parse(localCommentInfo);
 
@@ -33,7 +36,7 @@ const CommentForm = ({ slug = null }) => {
   useEffect(() => {
     if (localCommentData && Object.keys(localCommentData).length) {
       localStorage.setItem(
-        "next-blog-comment-data",
+        "zen-blog-comment-data",
         JSON.stringify(localCommentData)
       );
     }
@@ -135,6 +138,7 @@ const CommentForm = ({ slug = null }) => {
               onErrored={() => setCaptchaVerified(false)}
               size="normal"
               ref={captchaRef}
+              theme={theme}
             />
           </div>
         ) : null}

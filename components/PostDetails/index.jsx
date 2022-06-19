@@ -43,14 +43,14 @@ const PostDetails = ({
         className="mt-10"
       />
 
-      <div className="postdetails_commentform mt-10">
-        <h3 className="postdetails_commentform_title font-semibold text-lg mb-4 flex items-center gap-1">
+      <div className="postdetails_commentform">
+        <h3 className="postdetails_commentform_title">
           <MdOutlineAddComment className="text-green-600" /> Share Your Thoughts
         </h3>
         <CommentForm slug={slug} />
       </div>
 
-      <div className="postdetails_comments mt-10 flex flex-col gap-3">
+      <div className="postdetails_comments ">
         {comments && comments.length ? (
           comments.map((comment) => (
             <CommentCard
@@ -61,7 +61,7 @@ const PostDetails = ({
             />
           ))
         ) : (
-          <p className="postdetails_comments_empty py-10 text-center flex flex-col gap-2 items-center justify-center bg-yellow-100 text-yellow-600 text-lg rounded">
+          <p className="postdetails_comments_empty ">
             <MdComment /> no comments available
           </p>
         )}

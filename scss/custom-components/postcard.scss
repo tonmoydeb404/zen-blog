@@ -1,5 +1,5 @@
 .postcard {
-  @apply flex gap-5 p-3 items-stretch bg-white shadow-sm rounded-sm border border-gray-300;
+  @apply flex gap-5 p-3 items-stretch bg-white shadow-sm rounded-sm border border-gray-300 dark:bg-gray-800 dark:border-gray-700;
 
   &_media {
     @apply relative w-[250px] h-full;
@@ -17,16 +17,16 @@
     @apply flex items-center gap-1.5;
 
     &_item {
-      @apply px-1.5 py-1 text-xs font-semibold border border-green-600 bg-green-100 text-green-700 rounded-sm;
+      @apply px-1.5 py-1 text-xs font-semibold border border-green-700 bg-green-100 text-green-700 rounded-sm dark:bg-green-600/20 dark:text-green-600;
 
       &.uncategorized {
-        @apply border-gray-600 bg-gray-100 text-gray-700;
+        @apply border-gray-600 bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-50 dark:border-gray-400;
       }
     }
   }
 
   &_time {
-    @apply flex items-center gap-1 text-sm text-gray-500;
+    @apply flex items-center gap-1 text-sm text-gray-500 dark:text-gray-300;
   }
 
   &_title {
@@ -34,7 +34,7 @@
   }
 
   &_text {
-    @apply text-sm text-gray-700 mt-1;
+    @apply text-sm text-gray-700 mt-1 dark:text-gray-100;
   }
 
   &_actions {
@@ -49,11 +49,27 @@
     @apply px-2 font-semibold py-2 flex rounded-sm text-base duration-200;
 
     &.bookmarked {
-      @apply bg-gray-900 text-gray-50;
+      @apply bg-gray-900 text-gray-50 hover:bg-black dark:bg-blue-600 hover:dark:bg-blue-700;
     }
 
     &:not(.bookmarked) {
-      @apply bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-gray-50;
+      @apply bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-gray-50 dark:bg-blue-600/20 dark:text-blue-600 dark:border-blue-700 hover:dark:bg-blue-600 hover:dark:text-gray-50;
+    }
+  }
+
+  &_featured {
+    @apply relative w-full h-[300px] sm:h-[220px] lg:h-[250px] xl:h-[200px] border border-gray-200 shadow dark:border-gray-700;
+
+    &_body {
+      @apply absolute bottom-0 left-0 w-full px-3 py-4 text-gray-50 bg-gray-900/60;
+    }
+
+    &_tag {
+      @apply text-white py-1 px-1.5 rounded-sm font-semibold text-xs bg-green-600 inline-flex items-center gap-0.5;
+    }
+
+    &_title {
+      @apply font-semibold text-lg mt-2 line-clamp-2 hover:text-green-500 hover:underline duration-200;
     }
   }
 }

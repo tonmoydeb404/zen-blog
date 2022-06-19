@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useMemo } from "react";
 import PostCard from "../components/PostCard";
-import PostCardFeatured from "../components/PostCardFeatured";
+import PostCardFeatured from "../components/PostCard/PostCardFeatured";
 import Sidebar from "../components/Sidebar";
 import { siteInfo } from "../lib/constant";
 import { fetchPosts } from "../services";

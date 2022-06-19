@@ -1,6 +1,6 @@
 .bookmarks {
   &_item {
-    @apply px-3 py-2 border border-gray-300;
+    @apply px-3 py-3 border border-gray-200 dark:border-gray-700;
 
     &_title {
       @apply text-base font-semibold mb-2;

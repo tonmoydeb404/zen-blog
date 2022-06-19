@@ -25,8 +25,10 @@ const Nav = () => {
         </div>
       </nav>
 
-      <div className="nav_container-mobile ">
-        <NavLinks className="text-sm" />
+      <div className="nav_mobile">
+        <div className="nav_mobile_container ">
+          <NavLinks className="text-sm" />
+        </div>
       </div>
     </>
   );

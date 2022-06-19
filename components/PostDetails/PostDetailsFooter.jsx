@@ -6,9 +6,9 @@ const PostDetailsFooter = ({ categories = [] }) => {
   const router = useRouter();
 
   return (
-    <div className="postdetails_footer mt-10">
-      <div className="postdetails_share_list flex flex-wrap gap-4 items-center px-5 py-4 bg-white border border-gray-200 rounded">
-        <span className="postdetails_share_title text-lg font-medium mr-auto flex items-center gap-2">
+    <div className="postdetails_footer">
+      <div className="postdetails_share_list">
+        <span className="postdetails_share_title ">
           <MdShare className="text-green-600" /> share this article
         </span>
 

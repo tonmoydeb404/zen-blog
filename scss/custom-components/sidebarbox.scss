@@ -1,5 +1,5 @@
 .sidebarbox {
-  @apply py-3 px-4 border border-gray-300 rounded-sm;
+  @apply py-3 px-4 border border-gray-200 rounded-sm bg-white dark:bg-gray-800 dark:border-gray-700;
 
   &_header {
     @apply text-xl font-semibold mb-3;
@@ -10,6 +10,6 @@
   }
 
   &_none {
-    @apply text-sm text-gray-500 flex flex-col items-center gap-1 py-2;
+    @apply text-sm text-gray-500 flex flex-col items-center gap-1 py-2 dark:text-red-300;
   }
 }

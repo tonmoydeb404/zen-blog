@@ -1,12 +1,12 @@
 .commentform {
-  @apply px-3 py-3 border border-gray-400 rounded;
+  @apply px-3 py-3 border border-gray-200 rounded bg-white dark:bg-gray-800 dark:border-gray-700;
 
   &_layout {
     @apply grid grid-cols-2 gap-2;
   }
 
   &_input {
-    @apply px-4 py-3 rounded-sm bg-gray-900/5 outline-none ring-1 ring-transparent focus:ring-green-600;
+    @apply px-4 py-3 rounded-sm bg-gray-900/5 outline-none ring-1 ring-transparent focus:ring-green-600 dark:bg-gray-900/50;
   }
 
   &_textarea {
@@ -22,20 +22,20 @@
   }
 
   &_status {
-    @apply col-span-2 flex items-center justify-center gap-1 py-2 text-sm rounded font-normal;
+    @apply col-span-2 flex items-center justify-center gap-1 py-2 text-sm rounded font-medium;
 
     &.success {
-      @apply bg-green-100 text-green-600;
+      @apply bg-green-100 text-green-600 dark:bg-green-600/20;
     }
 
     &.error {
-      @apply bg-red-200 text-red-600;
+      @apply bg-red-200 text-red-600 dark:bg-red-600/20;
     }
   }
 }
 
 .commentcard {
-  @apply px-5 py-4 rounded-sm border border-gray-200 flex items-start gap-4;
+  @apply px-5 py-4 rounded-sm border border-gray-200 flex items-start gap-4 bg-white dark:bg-gray-800 dark:border-gray-700;
 
   &_media {
     @apply w-[50px] h-[55px] relative;
@@ -46,7 +46,7 @@
   }
 
   &_time {
-    @apply text-xs flex items-center gap-0.5 text-gray-700;
+    @apply text-xs flex items-center gap-0.5 text-gray-700 dark:text-gray-500;
   }
 
   &_title {
@@ -54,6 +54,6 @@
   }
 
   &_text {
-    @apply text-gray-600;
+    @apply text-gray-600 dark:text-gray-200;
   }
 }

@@ -1,17 +1,73 @@
-.postdetails_body {
-  h2 {
-    @apply font-bold text-2xl my-3;
+.postdetails {
+  &_body {
+    h2 {
+      @apply font-bold text-2xl my-3;
+    }
+
+    p {
+      @apply font-normal leading-7 my-2;
+    }
+
+    pre {
+      @apply bg-gray-800 overflow-x-auto py-5 pl-5 text-white my-1;
+    }
+
+    a {
+      @apply text-green-600 font-medium hover:text-green-700 duration-200;
+    }
   }
 
-  p {
-    @apply font-normal leading-7 my-2;
+  &_footer {
+    @apply mt-10;
   }
 
-  pre {
-    @apply bg-gray-800 overflow-x-auto py-5 pl-5 text-white my-1;
+  &_share {
+    &_list {
+      @apply flex flex-wrap gap-4 items-center px-5 py-4 bg-white border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700;
+    }
+
+    &_title {
+      @apply text-lg font-medium mr-auto flex items-center gap-2;
+    }
   }
 
-  a {
-    @apply text-green-600 font-medium hover:text-green-700 duration-200;
+  &_author {
+    @apply flex items-center gap-4 bg-white px-4 py-5 border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700;
+
+    &_media {
+      @apply relative w-36 h-36 rounded-lg overflow-hidden;
+    }
+
+    &_body {
+      @apply flex-1;
+    }
+
+    &_name {
+      @apply text-xl font-semibold;
+    }
+
+    &_url {
+      @apply text-sm font-semibold text-green-600 hover:text-green-700;
+    }
+
+    &_bio {
+      @apply text-base mt-2 text-gray-700 dark:text-gray-200;
+    }
+  }
+
+  &_commentform {
+    @apply mt-10;
+
+    &_title {
+      @apply font-semibold text-lg mb-4 flex items-center gap-1;
+    }
+  }
+
+  &_comments {
+    @apply mt-10 flex flex-col gap-3;
+
+    &_empty {
+      @apply py-10 text-center flex flex-col gap-2 items-center justify-center bg-yellow-100 text-yellow-600 text-lg rounded dark:bg-yellow-600/20;
+    }
   }
 }

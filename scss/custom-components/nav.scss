@@ -1,11 +1,15 @@
 .nav {
-  @apply py-3 shadow-sm shadow-gray-300 sticky top-0 bg-white z-[99999];
+  @apply py-3 shadow-sm shadow-gray-300 sticky top-0 bg-white z-[99999] dark:bg-gray-800 dark:shadow-green-600;
 
   &_container {
     @apply container flex items-center gap-10 flex-wrap;
+  }
 
-    &-mobile {
-      @apply container mt-0.5 py-2 bg-white overflow-x-auto shadow-sm shadow-gray-300 md:hidden;
+  &_mobile {
+    @apply mt-0.5 py-2 bg-white shadow-sm shadow-gray-300 md:hidden dark:bg-gray-800 dark:shadow-gray-900;
+
+    &_container {
+      @apply container overflow-x-auto;
     }
   }
 
@@ -22,7 +26,7 @@
   }
 
   &_links {
-    @apply flex items-center gap-5 text-gray-900;
+    @apply flex items-center gap-5;
 
     &_item {
       @apply font-medium  cursor-pointer hover:text-green-600 duration-200;
@@ -31,11 +35,11 @@
 
   &_search {
     &_btn {
-      @apply text-2xl p-1 rounded-full hover:bg-gray-100 text-gray-900 duration-200;
+      @apply text-2xl p-1 rounded-full hover:bg-gray-100 text-gray-900 dark:text-blue-600 hover:dark:bg-blue-600/20 duration-200;
     }
 
     &_modal {
-      @apply fixed w-full min-h-screen top-0 left-0 flex items-center justify-center flex-col bg-black/30 backdrop-blur-sm overflow-hidden duration-200;
+      @apply fixed w-full min-h-screen top-0 left-0 flex items-center justify-center flex-col bg-black/40 backdrop-blur overflow-hidden duration-200;
 
       &.show {
         @apply opacity-100 pointer-events-auto;
@@ -47,15 +51,15 @@
     }
 
     &_input {
-      @apply outline-none w-[500px];
+      @apply outline-none w-[500px] bg-transparent;
 
       &_box {
-        @apply bg-white flex items-center px-5 py-3 gap-2 text-base rounded shadow shadow-gray-400;
+        @apply bg-white flex items-center px-5 py-3 gap-2 text-base rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-700;
       }
     }
 
     &_suggest {
-      @apply bg-white mt-5 px-5 py-4 rounded;
+      @apply bg-white mt-5 px-5 py-4 rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-700;
 
       &_title {
         @apply font-medium text-base;
@@ -76,6 +80,6 @@
   }
 
   &_theme_btn {
-    @apply text-2xl p-1 rounded-full hover:bg-green-100 text-green-600 duration-200;
+    @apply text-2xl p-1 rounded-full hover:bg-green-100 text-green-600 duration-200 hover:dark:bg-green-600/20;
   }
 }
