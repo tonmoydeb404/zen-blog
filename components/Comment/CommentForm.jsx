@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { MdWarning } from "react-icons/md";
-import Reaptcha from "reaptcha";
 import { submitComment } from "../../services";
 
 const CommentForm = ({ slug = null }) => {
@@ -14,9 +14,9 @@ const CommentForm = ({ slug = null }) => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [localCommentData, setLocalCommentData] = useState(null);
 
-  const recaptchaSiteKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
-
   const captchaRef = useRef(null);
+
+  const recaptchaSiteKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
 
   // get saved comment data from localstorage
   useEffect(() => {
@@ -38,6 +38,14 @@ const CommentForm = ({ slug = null }) => {
       );
     }
   }, [localCommentData]);
+
+  // reset captcha
+  useEffect(() => {
+    if (captchaVerified === "reset" && captchaRef.current) {
+      captchaRef.current.reset();
+      setCaptchaVerified(false);
+    }
+  }, [captchaVerified]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,12 +85,8 @@ const CommentForm = ({ slug = null }) => {
       });
 
       // reset state
-      setCaptchaVerified(false);
+      setCaptchaVerified("reset");
       setCommentText("");
-
-      if (captchaRef.current) {
-        captchaRef.current.reset();
-      }
     } catch (error) {
       console.log(error);
       setCommentStatus({
@@ -124,13 +128,13 @@ const CommentForm = ({ slug = null }) => {
 
         {recaptchaSiteKey ? (
           <div className="commentform_recaptcha col-span-2 md:col-span-1">
-            <Reaptcha
-              ref={captchaRef}
+            <ReCAPTCHA
               sitekey={recaptchaSiteKey}
-              onVerify={() => setCaptchaVerified(true)}
+              onChange={() => setCaptchaVerified(true)}
               onExpired={() => setCaptchaVerified(false)}
               onErrored={() => setCaptchaVerified(false)}
               size="normal"
+              ref={captchaRef}
             />
           </div>
         ) : null}
