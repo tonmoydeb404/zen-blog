@@ -10,7 +10,7 @@
   }
 
   &_body {
-    @apply flex-1 w-full;
+    @apply flex-1 w-full flex flex-col sm:min-h-full;
   }
 
   &_tags {
@@ -38,7 +38,7 @@
   }
 
   &_text {
-    @apply text-sm text-gray-700 mt-1 dark:text-gray-100 line-clamp-3;
+    @apply text-sm text-gray-700 mt-1 dark:text-gray-100 line-clamp-3 mb-auto;
   }
 
   &_actions {
