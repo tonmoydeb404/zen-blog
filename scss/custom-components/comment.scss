@@ -1,5 +1,5 @@
 .commentform {
-  @apply px-3 py-3 border border-gray-200 rounded bg-white dark:bg-gray-800 dark:border-gray-700;
+  @apply px-3 py-3 box;
 
   &_layout {
     @apply grid grid-cols-2 gap-2;
@@ -35,7 +35,7 @@
 }
 
 .commentcard {
-  @apply px-5 py-4 rounded-sm border border-gray-200 flex items-start gap-4 bg-white dark:bg-gray-800 dark:border-gray-700;
+  @apply px-5 py-4 rounded-sm flex items-start gap-4 box;
 
   &_media {
     @apply w-[50px] h-[55px] relative;

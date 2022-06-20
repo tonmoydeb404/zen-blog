@@ -19,3 +19,9 @@
     @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5;
   }
 }
+
+.blog {
+  &_sidebar {
+    @apply flex flex-col gap-5 md:sticky md:top-20;
+  }
+}

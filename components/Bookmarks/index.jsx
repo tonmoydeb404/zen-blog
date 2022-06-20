@@ -6,10 +6,10 @@ const Bookmarks = () => {
   const { bookmarksData } = useBookmarks();
 
   return (
-    <div className="sidebarbox bookmarks">
-      <h3 className="sidebarbox_header">Bookmarks</h3>
+    <div className="widget bookmarks">
+      <h3 className="widget_header">Bookmarks</h3>
 
-      <div className="sidebarbox_body">
+      <div className="widget_body">
         {bookmarksData && bookmarksData.length ? (
           bookmarksData.map((bookmark) => (
             <BookmarksItem
@@ -20,7 +20,7 @@ const Bookmarks = () => {
             />
           ))
         ) : (
-          <p className="sidebarbox_none">
+          <p className="widget_none">
             <span className="text-2xl">
               <BiSad />
             </span>

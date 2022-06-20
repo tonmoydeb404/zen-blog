@@ -1,5 +1,5 @@
-.sidebarbox {
-  @apply py-3 px-4 border border-gray-200 rounded-sm bg-white dark:bg-gray-800 dark:border-gray-700;
+.widget {
+  @apply py-3 px-4 box;
 
   &_header {
     @apply text-xl font-semibold mb-3;

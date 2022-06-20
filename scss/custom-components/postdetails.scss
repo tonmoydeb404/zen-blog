@@ -23,7 +23,7 @@
 
   &_share {
     &_list {
-      @apply flex flex-wrap gap-4 items-center px-5 py-4 bg-white border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700;
+      @apply flex flex-wrap gap-4 items-center px-5 py-4 box;
     }
 
     &_title {

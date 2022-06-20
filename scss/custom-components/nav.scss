@@ -54,12 +54,12 @@
       @apply outline-none w-[500px] bg-transparent;
 
       &_box {
-        @apply bg-white flex items-center px-5 py-3 gap-2 text-base rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-700;
+        @apply flex items-center px-5 py-3 gap-2 text-base box;
       }
     }
 
     &_suggest {
-      @apply bg-white mt-5 px-5 py-4 rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-700;
+      @apply bg-white mt-5 px-5 py-4 box;
 
       &_title {
         @apply font-medium text-base;

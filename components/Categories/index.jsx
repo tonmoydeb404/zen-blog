@@ -6,10 +6,10 @@ const Categories = () => {
   const { categoriesData } = useCategories();
 
   return (
-    <div className="sidebarbox categories">
-      <h3 className="sidebarbox_header text-xl">Categories</h3>
+    <div className="widget categories">
+      <h3 className="widget_header text-xl">Categories</h3>
 
-      <div className="sidebarbox_body">
+      <div className="widget_body">
         {categoriesData && categoriesData.length ? (
           categoriesData.map((category) => (
             <CategoriesItem
@@ -20,7 +20,7 @@ const Categories = () => {
             />
           ))
         ) : (
-          <p className="sidebarbox_none">
+          <p className="widget_none">
             <span className="text-2xl">
               <BiSad />
             </span>
