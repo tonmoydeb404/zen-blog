@@ -18,6 +18,10 @@
   &_featured {
     @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5;
   }
+
+  &_none {
+    @apply flex items-center py-10 text-lg gap-1 bg-green-600/20 justify-center text-green-700 rounded font-medium;
+  }
 }
 
 .blog {

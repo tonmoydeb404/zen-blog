@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { BiSad } from "react-icons/bi";
 import { MdSearch } from "react-icons/md";
 import PostCard from "../components/PostCard";
 import Sidebar from "../components/Sidebar";
@@ -44,20 +45,24 @@ const SearchPage = ({ posts = [] }) => {
         </div>
 
         <main className="feed_main">
-          {posts && posts.length
-            ? posts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  category={post.category}
-                  thumbnail={post.thumbnail?.url}
-                  title={post.title}
-                  text={post.description}
-                  createdAt={post.createdAt}
-                  slug={post.slug}
-                  id={post.id}
-                />
-              ))
-            : "not found"}
+          {posts && posts.length ? (
+            posts.map((post) => (
+              <PostCard
+                key={post.id}
+                category={post.category}
+                thumbnail={post.thumbnail?.url}
+                title={post.title}
+                text={post.description}
+                createdAt={post.createdAt}
+                slug={post.slug}
+                id={post.id}
+              />
+            ))
+          ) : (
+            <p className="feed_none">
+              <BiSad /> no posts sorry
+            </p>
+          )}
         </main>
 
         <aside className="feed_sidebar">
