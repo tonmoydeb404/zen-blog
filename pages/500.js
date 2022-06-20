@@ -6,7 +6,7 @@ const Error500 = () => {
   return (
     <>
       <Head>
-        <title>Error - {siteInfo.fullName}</title>
+        <title>{`500 Error - ${siteInfo.fullName}`}</title>
       </Head>
       <ErrorPage errorCode={500} errorText="enternal sever error" />
     </>

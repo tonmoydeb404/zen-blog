@@ -6,7 +6,7 @@ const Error404 = () => {
   return (
     <>
       <Head>
-        <title>404 Error - {siteInfo.fullName}</title>
+        <title>{`404 Error - ${siteInfo.fullName}`}</title>
       </Head>
       <ErrorPage />;
     </>
