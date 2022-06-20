@@ -13,10 +13,10 @@ const Categories = () => {
         {categoriesData && categoriesData.length ? (
           categoriesData.map((category) => (
             <CategoriesItem
-              title={category.node?.title}
-              posts={category.node?.posts}
-              slug={category.node?.slug}
-              key={category.node?.id}
+              title={category.title}
+              posts={category.posts}
+              slug={category.slug}
+              key={category.id}
             />
           ))
         ) : (

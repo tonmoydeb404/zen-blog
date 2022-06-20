@@ -62,14 +62,14 @@ const NavSearch = () => {
                 <div className="nav_search_suggest_list ">
                   {categoriesData.map((category) => (
                     <Link
-                      key={category.node?.id}
-                      href={`/categories/${category.node?.slug}`}
+                      key={category.id}
+                      href={`/categories/${category.slug}`}
                     >
                       <a
                         onClick={() => setModal(false)}
                         className="nav_search_suggest_item"
                       >
-                        {category.node?.title}
+                        {category.title}
                       </a>
                     </Link>
                   ))}

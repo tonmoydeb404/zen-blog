@@ -3,7 +3,7 @@ import { MdTag } from "react-icons/md";
 import PostCard from "../../components/PostCard";
 import Sidebar from "../../components/Sidebar";
 import { siteInfo } from "../../lib/constant";
-import { fetchCategories, fetchCategory } from "../../services";
+import { getCategories, getCategory } from "../../services";
 
 const Category = ({ posts, title, slug }) => {
   return (
@@ -42,7 +42,7 @@ const Category = ({ posts, title, slug }) => {
             ? posts.map((post) => (
                 <PostCard
                   key={post.id}
-                  categories={post.categories}
+                  category={post.category}
                   thumbnail={post.thumbnail?.url}
                   title={post.title}
                   text={post.description}
@@ -63,27 +63,34 @@ const Category = ({ posts, title, slug }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const category = await fetchCategory(params.slug);
+  const data = await getCategory(params.slug);
+
+  if (!data || data.isError) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      posts: category.posts,
-      slug: category.slug,
-      title: category.title,
-      id: category.id,
+      posts: data?.category?.posts,
+      slug: data?.category?.slug,
+      title: data?.category?.title,
+      id: data?.category?.id,
     },
+    revalidate: 10,
   };
 };
 
 export const getStaticPaths = async () => {
-  const categoriesData = await fetchCategories();
-  const paths = categoriesData.map((cate) => ({
-    params: { slug: cate?.node?.slug },
+  const data = await getCategories();
+  const paths = data?.categories?.map((cate) => ({
+    params: { slug: cate?.slug },
   }));
 
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 };
 

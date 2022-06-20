@@ -4,7 +4,7 @@ import { MdSearch } from "react-icons/md";
 import PostCard from "../components/PostCard";
 import Sidebar from "../components/Sidebar";
 import { siteInfo } from "../lib/constant";
-import { fetchPostByQuery } from "../services";
+import { getSearchPosts } from "../services";
 
 const SearchPage = ({ posts = [] }) => {
   const router = useRouter();
@@ -48,7 +48,7 @@ const SearchPage = ({ posts = [] }) => {
             ? posts.map((post) => (
                 <PostCard
                   key={post.id}
-                  categories={post.categories}
+                  category={post.category}
                   thumbnail={post.thumbnail?.url}
                   title={post.title}
                   text={post.description}
@@ -69,11 +69,11 @@ const SearchPage = ({ posts = [] }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const posts = await fetchPostByQuery(context.query?.q);
+  const data = await getSearchPosts(context.query?.q);
 
   return {
     props: {
-      posts,
+      posts: data?.posts || [],
     },
   };
 };

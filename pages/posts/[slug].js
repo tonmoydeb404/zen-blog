@@ -2,33 +2,36 @@ import Head from "next/head";
 import PostDetails from "../../components/PostDetails";
 import Sidebar from "../../components/Sidebar";
 import { siteInfo } from "../../lib/constant";
-import { fetchPost, fetchPosts } from "../../services";
+import { getPost, getPosts } from "../../services";
 
-const Post = ({ post }) => {
+const Post = ({ post, comments }) => {
   return (
     <>
-      <Head>
-        <title>{post.title}</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="title" content={post.title} />
-        <meta name="description" content={post.description} />
-        <meta name="keywords" content={post.tags?.join(",")} />
-        <meta name="author" content={post.authorInfo?.authorName} />
+      {post ? (
+        <Head>
+          <title>{post.title}</title>
+          <meta name="robots" content="index, follow" />
+          <meta name="title" content={post.title} />
+          <meta name="description" content={post.description} />
+          <meta name="keywords" content={post.tags?.join(",")} />
+          <meta name="author" content={post.authorInfo?.authorName} />
 
-        {/* open graph */}
-        <meta property="og:title" content={post.title} />
-        <meta property="og:site_name" content={siteInfo.fullName} />
-        <meta
-          property="og:url"
-          content={`${siteInfo.url}/posts/${post.slug}`}
-        />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:image"
-          content={post.thumbnail?.url || siteInfo.ogImage}
-        />
-      </Head>
+          {/* open graph */}
+          <meta property="og:title" content={post.title} />
+          <meta property="og:site_name" content={siteInfo.fullName} />
+          <meta
+            property="og:url"
+            content={`${siteInfo.url}/posts/${post.slug}`}
+          />
+          <meta property="og:description" content={post.description} />
+          <meta property="og:type" content="article" />
+          <meta
+            property="og:image"
+            content={post.thumbnail?.url || siteInfo.ogImage}
+          />
+        </Head>
+      ) : null}
+
       <section className="feed_wrapper">
         <main className="feed_main">
           <PostDetails
@@ -38,9 +41,9 @@ const Post = ({ post }) => {
             createdAt={post.createdAt}
             id={post.id}
             text={post.description}
-            categories={post.categories}
+            category={post.category}
             slug={post.slug}
-            comments={post.comments}
+            comments={comments}
             authorInfo={post.authorInfo}
           />
         </main>
@@ -54,17 +57,28 @@ const Post = ({ post }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const post = await fetchPost(params.slug);
+  const data = await getPost(params.slug);
+
+  if (!data || data.isError) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
-    props: { post },
+    props: {
+      post: data?.post,
+      comments: data?.comments || [],
+    },
     revalidate: 10,
   };
 };
 
 export const getStaticPaths = async () => {
-  const posts = await fetchPosts();
-  const paths = posts.map((post) => ({
-    params: { slug: post.node?.slug, id: post.node?.id },
+  const data = await getPosts();
+
+  const paths = data?.posts?.map((post) => ({
+    params: { slug: post?.slug },
   }));
 
   return {

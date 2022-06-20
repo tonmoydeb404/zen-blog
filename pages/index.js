@@ -4,11 +4,11 @@ import PostCard from "../components/PostCard";
 import PostCardFeatured from "../components/PostCard/PostCardFeatured";
 import Sidebar from "../components/Sidebar";
 import { siteInfo } from "../lib/constant";
-import { fetchPosts } from "../services";
+import { getPosts } from "../services";
 
 export default function Home({ posts = [] }) {
   const featuredPosts = useMemo(() => {
-    const filteredPost = posts.filter((post) => post.node?.featured);
+    const filteredPost = posts.filter((post) => post.featured);
 
     return filteredPost.slice(0, 4);
   }, [posts]);
@@ -35,11 +35,11 @@ export default function Home({ posts = [] }) {
           <header className="feed_header feed_featured">
             {featuredPosts.map((post) => (
               <PostCardFeatured
-                key={post.node?.id}
-                categories={post.node?.categories}
-                thumbnail={post.node?.thumbnail?.url}
-                title={post.node?.title}
-                slug={post.node?.slug}
+                key={post.id}
+                category={post.category}
+                thumbnail={post.thumbnail?.url}
+                title={post.title}
+                slug={post.slug}
               />
             ))}
           </header>
@@ -48,14 +48,14 @@ export default function Home({ posts = [] }) {
           {posts && posts.length
             ? posts.map((post) => (
                 <PostCard
-                  key={post.node?.id}
-                  categories={post.node?.categories}
-                  thumbnail={post.node?.thumbnail?.url}
-                  title={post.node?.title}
-                  text={post.node?.description}
-                  createdAt={post.node?.createdAt}
-                  slug={post.node?.slug}
-                  id={post.node?.id}
+                  key={post.id}
+                  category={post.category}
+                  thumbnail={post.thumbnail?.url}
+                  title={post.title}
+                  text={post.description}
+                  createdAt={post.createdAt}
+                  slug={post.slug}
+                  id={post.id}
                 />
               ))
             : ""}
@@ -70,9 +70,10 @@ export default function Home({ posts = [] }) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await fetchPosts();
+  const data = await getPosts();
+
   return {
-    props: { posts },
+    props: { posts: data?.posts || [] },
     revalidate: 10,
   };
 };

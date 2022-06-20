@@ -11,7 +11,7 @@ const PostDetailsHeader = ({
   id,
   slug,
   text,
-  categories,
+  category,
 }) => {
   const { toggleBookmark, isBookmarked } = useToggleBookmark(id);
 
@@ -24,13 +24,9 @@ const PostDetailsHeader = ({
       ) : null}
 
       <div className="postcard_tags mb-5">
-        {categories && categories.length
-          ? categories.map((category) => (
-              <Link href={`/categories/${category.slug}`} key={category.id}>
-                <a className="postcard_tags_item"># {category.title}</a>
-              </Link>
-            ))
-          : ""}
+        <Link href={`/categories/${category.slug}`}>
+          <a className="postcard_tags_item"># {category.title}</a>
+        </Link>
       </div>
 
       <h2 className="postdetails_title font-bold text-3xl mb-2">{title}</h2>

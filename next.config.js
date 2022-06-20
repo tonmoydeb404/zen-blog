@@ -10,7 +10,9 @@ const nextConfig = {
   },
   env: {
     CMS_API_TOKEN: process.env.CMS_API_TOKEN,
+    CMS_ENDPOINT: process.env.CMS_ENDPOINT,
     GOOGLE_RECAPTCHA_SITE_KEY: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
+    GOOGLE_RECAPTCHA_SECRET_KEY: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
   },
 };
 

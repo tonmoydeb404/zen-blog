@@ -2,7 +2,7 @@ import Image from "next/image";
 import PostCardBody from "./PostCardBody";
 
 const PostCard = ({
-  categories,
+  category,
   thumbnail,
   title,
   text,
@@ -25,7 +25,7 @@ const PostCard = ({
       <PostCardBody
         title={title}
         text={text}
-        categories={categories}
+        category={category}
         createdAt={createdAt}
         slug={slug}
         id={id}

@@ -13,7 +13,7 @@ const PostDetails = ({
   id,
   slug,
   text,
-  categories = [],
+  category = {},
   comments = [],
   authorInfo = {},
 }) => {
@@ -26,14 +26,14 @@ const PostDetails = ({
         createdAt={createdAt}
         slug={slug}
         text={text}
-        categories={categories}
+        category={category}
       />
       <div
         className="postdetails_body"
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
 
-      <PostDetailsFooter categories={categories} />
+      <PostDetailsFooter />
 
       <PostDetailsAuthor
         authorBio={authorInfo.authorBio}

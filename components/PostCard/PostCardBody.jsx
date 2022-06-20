@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import useToggleBookmark from "../../hooks/useToggleBookmark";
 
 const PostCardBody = ({
-  categories = [],
+  category = {},
   title = "",
   text = "",
   createdAt = "",
@@ -17,12 +17,10 @@ const PostCardBody = ({
     <div className="postcard_body ">
       <div className="postcard_header">
         <div className="postcard_tags ">
-          {categories && categories.length ? (
-            categories.map((category) => (
-              <Link href={`/categories/${category.slug}`} key={category.id}>
-                <a className="postcard_tags_item"># {category.title}</a>
-              </Link>
-            ))
+          {category && Object.keys(category).length ? (
+            <Link href={`/categories/${category.slug}`}>
+              <a className="postcard_tags_item"># {category.title}</a>
+            </Link>
           ) : (
             <span className="postcard_tags_item uncategorized">
               # uncategorised

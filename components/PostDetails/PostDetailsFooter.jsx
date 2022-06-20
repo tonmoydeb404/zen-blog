@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { MdShare } from "react-icons/md";
 import { share } from "../../lib/constant";
 
-const PostDetailsFooter = ({ categories = [] }) => {
+const PostDetailsFooter = () => {
   const router = useRouter();
 
   return (

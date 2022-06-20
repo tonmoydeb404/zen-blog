@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MdStar } from "react-icons/md";
 
-const PostCardFeatured = ({ thumbnail, title, categories, slug }) => {
+const PostCardFeatured = ({ thumbnail, title, category, slug }) => {
   return (
     <article className="postcard_featured">
       <Image
@@ -14,13 +14,10 @@ const PostCardFeatured = ({ thumbnail, title, categories, slug }) => {
       />
 
       <div className="postcard_featured_body ">
-        {categories && categories.length ? (
-          <Link
-            href={`/categories/${categories[0].slug}`}
-            key={categories[0].id}
-          >
+        {category && Object.keys(category).length ? (
+          <Link href={`/categories/${category.slug}`}>
             <a className="postcard_featured_tag ">
-              <MdStar /> {categories[0].title}
+              <MdStar /> {category.title}
             </a>
           </Link>
         ) : (

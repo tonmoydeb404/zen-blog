@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { MdWarning } from "react-icons/md";
+import { MdCheck, MdWarning } from "react-icons/md";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { submitComment } from "../../services";
 
@@ -152,7 +152,7 @@ const CommentForm = ({ slug = null }) => {
 
         {commentStatus.message?.length ? (
           <p className={`commentform_status ${commentStatus.status}`}>
-            <MdWarning />
+            {commentStatus.status === "error" ? <MdWarning /> : <MdCheck />}
             {commentStatus.message}
           </p>
         ) : null}
