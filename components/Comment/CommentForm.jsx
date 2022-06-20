@@ -5,20 +5,24 @@ import { useThemeContext } from "../../contexts/ThemeContext";
 import { submitComment } from "../../services";
 
 const CommentForm = ({ slug = null }) => {
+  // initial state for form components
   const [commentName, setCommentName] = useState("");
   const [commentEmail, setCommentEmail] = useState("");
   const [commentText, setCommentText] = useState("");
+  // handle form errors
   const [commentStatus, setCommentStatus] = useState({
     message: "",
     status: undefined,
   });
+  // captcha verfication state
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  // state for saveing form data in localstorage
   const [localCommentData, setLocalCommentData] = useState(null);
-
+  // captcha reference for furthrr reset
   const captchaRef = useRef(null);
-
+  // captcha site key
   const recaptchaSiteKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
-
+  // theme for captcha
   const { theme } = useThemeContext();
 
   // get saved comment data from localstorage
@@ -50,9 +54,11 @@ const CommentForm = ({ slug = null }) => {
     }
   }, [captchaVerified]);
 
+  // handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // check captcha already verified or not
     if (!captchaVerified) {
       return setCommentStatus({
         status: "error",
@@ -60,12 +66,14 @@ const CommentForm = ({ slug = null }) => {
       });
     }
 
+    // check the post slug is available or not
     if (!slug)
       return setCommentStatus({
         status: "error",
         message: "can not connect to the post",
       });
 
+    // check comment text
     if (commentText.trim().length <= 5) {
       return setCommentStatus({
         status: "error",
@@ -80,8 +88,14 @@ const CommentForm = ({ slug = null }) => {
     };
 
     try {
-      await submitComment(commentObj, slug);
+      // submit comment
+      const result = await submitComment(commentObj, slug);
+
+      // check comment created or not
+      if (!result.comment?.id) throw { message: "comment not created" };
+      // save comment data in local storage on success
       setLocalCommentData({ name: commentName, email: commentEmail });
+      // show the success message
       setCommentStatus({
         message: "comment submitted wait for admin confirmation",
         status: "success",
@@ -91,7 +105,7 @@ const CommentForm = ({ slug = null }) => {
       setCaptchaVerified("reset");
       setCommentText("");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setCommentStatus({
         message: "something went to wrong",
         status: "error",
