@@ -24,4 +24,20 @@
   &_sidebar {
     @apply flex flex-col gap-5 md:sticky md:top-20;
   }
+
+  &_error {
+    @apply w-full min-h-screen fixed top-0 left-0 flex items-center justify-center gap-2 flex-col;
+
+    &_code {
+      @apply text-3xl font-semibold;
+    }
+
+    &_text {
+      @apply flex items-center gap-2 justify-center flex-wrap text-lg;
+
+      a {
+        @apply text-green-600;
+      }
+    }
+  }
 }
