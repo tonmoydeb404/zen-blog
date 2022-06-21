@@ -7,9 +7,7 @@ export const getPosts = async () => {
   // query document for request
   const query = gql`
     query getPosts() {
-      posts(
-        orderBy: createdAt_DESC
-      ){
+      posts(orderBy: createdAt_DESC,) {
         id
         slug
         title
@@ -27,7 +25,6 @@ export const getPosts = async () => {
           slug
           title
         }
-
       }
     }
   `;
@@ -179,6 +176,7 @@ export const getPost = async (slug) => {
   }
 };
 
+// get a specific category
 export const getCategory = async (slug) => {
   if (!slug)
     return { isEror: true, error: { message: "arguments are invalid" } };
@@ -339,5 +337,258 @@ export const submitComment = async (commentDetails, postSlug) => {
     return result.json();
   } catch (error) {
     return { isEror: true, error };
+  }
+};
+
+// get post for pagination
+export const getPaginatedPosts = async (page, postPerPage) => {
+  // validate arguments
+  if (typeof page !== "number" || typeof postPerPage !== "number")
+    return { isEror: true, error: { message: "arguments are invalid" } };
+
+  // query document for request
+  const query = gql`
+    query getPaginatedPosts($first: Int!, $skip: Int!) {
+      postsConnection(first: $first, skip: $skip, orderBy: createdAt_DESC) {
+        aggregate {
+          count
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          pageSize
+          startCursor
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            id
+            slug
+            title
+            featured
+            description
+            createdAt
+            tags
+            thumbnail {
+              url
+              width
+              height
+            }
+            category {
+              id
+              slug
+              title
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await request({
+      url: CMS_ENDPOINT,
+      document: query,
+      variables: {
+        first: postPerPage,
+        skip: page * postPerPage,
+      },
+    });
+
+    if (data?.errors && data?.errors?.length)
+      throw {
+        code: 500,
+        message: data?.errors[0]?.message,
+      };
+
+    // modify data in a specific structure
+    const modifiedData = {
+      totalPosts: data.postsConnection?.aggregate?.count,
+      posts: data.postsConnection?.edges?.map((post) => post.node),
+    };
+
+    return modifiedData;
+  } catch (error) {
+    return { isError: true, error };
+  }
+};
+
+// get category post for pagination
+export const getPaginatedCategory = async (slug, page, postPerPage) => {
+  if (!slug || typeof page !== "number" || typeof postPerPage !== "number")
+    return { isEror: true, error: { message: "arguments are invalid" } };
+
+  // query document for request
+  const query = gql`
+    query getCategory($slug: String!, $first: Int!, $skip: Int!) {
+      category(where: { slug: $slug }) {
+        id
+        title
+        slug
+      }
+
+      postsConnection(
+        first: $first
+        skip: $skip
+        orderBy: createdAt_DESC
+        where: { category: { slug: $slug } }
+      ) {
+        aggregate {
+          count
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          pageSize
+          startCursor
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            id
+            slug
+            title
+            featured
+            description
+            createdAt
+            tags
+            thumbnail {
+              url
+              width
+              height
+            }
+            category {
+              id
+              slug
+              title
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await request({
+      url: CMS_ENDPOINT,
+      document: query,
+      variables: {
+        slug,
+        first: postPerPage,
+        skip: page * postPerPage,
+      },
+    });
+
+    if (data.errors && data?.errors?.length)
+      throw {
+        code: 500,
+        message: data.errors[0]?.message || "internal server error",
+      };
+
+    if (data.category === null)
+      throw { code: 404, message: "category not found" };
+
+    // modify data in a specific structure
+    const modifiedData = {
+      category: data.category,
+      totalPosts: data.postsConnection?.aggregate?.count,
+      posts: data.postsConnection?.edges?.map((post) => post.node),
+    };
+
+    return modifiedData;
+  } catch (error) {
+    return { isError: true, error };
+  }
+};
+
+// get paginated searches
+export const getPaginatedSearchPosts = async (
+  searchQuery,
+  page,
+  postPerPage
+) => {
+  // validate arguments
+  if (
+    !searchQuery ||
+    typeof page !== "number" ||
+    typeof postPerPage !== "number"
+  )
+    return { isEror: true, error: { message: "arguments are invalid" } };
+
+  // query document for request
+  const query = gql`
+    query getPaginatedPosts($first: Int!, $skip: Int!, $searchQuery: String!) {
+      postsConnection(
+        first: $first
+        skip: $skip
+        orderBy: createdAt_DESC
+        where: { _search: $searchQuery }
+      ) {
+        aggregate {
+          count
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          pageSize
+          startCursor
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            id
+            slug
+            title
+            featured
+            description
+            createdAt
+            tags
+            thumbnail {
+              url
+              width
+              height
+            }
+            category {
+              id
+              slug
+              title
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await request({
+      url: CMS_ENDPOINT,
+      document: query,
+      variables: {
+        first: postPerPage,
+        skip: page * postPerPage,
+      },
+    });
+
+    if (data?.errors && data?.errors?.length)
+      throw {
+        code: 500,
+        message: data?.errors[0]?.message,
+      };
+
+    // modify data in a specific structure
+    const modifiedData = {
+      totalPosts: data.postsConnection?.aggregate?.count,
+      posts: data.postsConnection?.edges?.map((post) => post.node),
+    };
+
+    return modifiedData;
+  } catch (error) {
+    return { isError: true, error };
   }
 };

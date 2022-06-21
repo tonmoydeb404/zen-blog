@@ -1,7 +1,6 @@
 import Head from "next/head";
-import { BiSad } from "react-icons/bi";
 import { MdTag } from "react-icons/md";
-import PostCard from "../../components/PostCard";
+import PostsList from "../../components/PostsList";
 import Sidebar from "../../components/Sidebar";
 import { siteInfo } from "../../lib/constant";
 import { getCategories, getCategory } from "../../services";
@@ -39,24 +38,7 @@ const Category = ({ posts, title, slug }) => {
         </div>
 
         <main className="feed_main">
-          {posts && posts.length ? (
-            posts.map((post) => (
-              <PostCard
-                key={post.id}
-                category={post.category}
-                thumbnail={post.thumbnail?.url}
-                title={post.title}
-                text={post.description}
-                createdAt={post.createdAt}
-                slug={post.slug}
-                id={post.id}
-              />
-            ))
-          ) : (
-            <p className="feed_none">
-              <BiSad /> no posts sorry
-            </p>
-          )}
+          <PostsList posts={posts} />
         </main>
 
         <aside className="feed_sidebar">
