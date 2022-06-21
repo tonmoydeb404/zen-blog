@@ -1,6 +1,6 @@
 .feed {
   &_main {
-    @apply col-span-1 lg:col-span-8 flex flex-col gap-8;
+    @apply col-span-1 lg:col-span-8;
   }
 
   &_sidebar {
@@ -17,10 +17,6 @@
 
   &_featured {
     @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5;
-  }
-
-  &_none {
-    @apply flex items-center py-10 text-lg gap-1 bg-green-600/20 justify-center text-green-700 rounded font-medium;
   }
 }
 
