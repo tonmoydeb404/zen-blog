@@ -2,6 +2,7 @@ import { MdComment, MdOutlineAddComment } from "react-icons/md";
 import CommentCard from "../Comment/CommentCard";
 import CommentForm from "../Comment/CommentForm";
 import PostDetailsAuthor from "./PostDetailsAuthor";
+import PostDetailsBody from "./PostDetailsBody";
 import PostDetailsFooter from "./PostDetailsFooter";
 import PostDetailsHeader from "./PostDetailsHeader";
 
@@ -28,10 +29,7 @@ const PostDetails = ({
         text={text}
         category={category}
       />
-      <div
-        className="postdetails_body"
-        dangerouslySetInnerHTML={{ __html: content }}
-      ></div>
+      <PostDetailsBody raw={content?.raw} />
 
       <PostDetailsFooter />
 

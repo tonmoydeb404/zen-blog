@@ -1,19 +1,133 @@
 .postdetails {
   &_body {
-    h2 {
-      @apply font-bold text-2xl my-3;
+    * {
+      @apply break-words max-w-full;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold my-3;
+    }
+
+    h1,
+    h2,
+    h3 {
+      @apply text-2xl sm:text-3xl leading-normal;
+    }
+
+    h4 {
+      @apply text-xl leading-normal;
+    }
+
+    h5 {
+      @apply text-lg leading-normal;
+    }
+
+    h6 {
+      @apply text-base leading-normal;
+    }
+
+    blockquote {
+      @apply p-5 bg-gray-200 border-l-8 border-green-600 rounded-tr rounded-br;
     }
 
     p {
-      @apply font-normal leading-7 my-2;
+      @apply font-normal leading-relaxed my-2;
+    }
+
+    b {
+      @apply font-bold;
+    }
+
+    i {
+      @apply italic;
+    }
+
+    u {
+      @apply underline;
+    }
+
+    ul {
+      @apply list-disc list-inside;
+      li > ul {
+        list-style-type: circle;
+        @apply pl-6;
+
+        li > ul {
+          list-style-type: square;
+        }
+      }
+    }
+
+    ol {
+      @apply list-decimal list-inside;
+      li > ol {
+        @apply pl-6;
+      }
+    }
+
+    code {
+      @apply px-1.5 py-1 bg-gray-300 text-gray-900 border border-gray-500 rounded-sm font-medium;
     }
 
     pre {
-      @apply bg-gray-800 overflow-x-auto py-5 pl-5 text-white my-1;
+      @apply bg-gray-800 overflow-x-auto py-5 pl-5 text-white my-1 rounded;
     }
 
     a {
       @apply text-green-600 font-medium hover:text-green-700 duration-200;
+    }
+
+    img {
+      @apply w-full overflow-hidden rounded;
+    }
+
+    .table_layout {
+      @apply relative overflow-x-auto box;
+
+      table {
+        @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
+
+        thead {
+          @apply text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400 border-b border-gray-200;
+
+          th {
+            @apply px-6 py-3 font-semibold;
+
+            * {
+              @apply font-semibold;
+            }
+          }
+        }
+
+        tr {
+          @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600;
+
+          th {
+            @apply px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap;
+          }
+
+          td {
+            @apply px-6 py-4;
+
+            &:first-child {
+              @apply px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap;
+            }
+          }
+        }
+      }
+    }
+
+    .video_player {
+      @apply relative aspect-video;
+    }
+
+    video {
+      @apply relative aspect-video w-full h-full;
     }
   }
 

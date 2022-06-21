@@ -23,11 +23,13 @@ const PostDetailsHeader = ({
         </div>
       ) : null}
 
-      <div className="postcard_tags mb-5">
-        <Link href={`/categories/${category.slug}`}>
-          <a className="postcard_tags_item"># {category.title}</a>
-        </Link>
-      </div>
+      {category ? (
+        <div className="postcard_tags mb-5">
+          <Link href={`/categories/${category.slug}`}>
+            <a className="postcard_tags_item"># {category.title}</a>
+          </Link>
+        </div>
+      ) : null}
 
       <h2 className="postdetails_title font-bold text-3xl mb-2">{title}</h2>
 

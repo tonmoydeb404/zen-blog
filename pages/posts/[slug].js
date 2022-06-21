@@ -35,7 +35,7 @@ const Post = ({ post, comments }) => {
       <section className="feed_wrapper">
         <main className="feed_main">
           <PostDetails
-            content={post.content?.html}
+            content={post.content}
             thumbnail={post.thumbnail?.url}
             title={post.title}
             createdAt={post.createdAt}
