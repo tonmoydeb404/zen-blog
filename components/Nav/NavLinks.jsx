@@ -10,7 +10,12 @@ const NavLinks = ({ className = "" }) => {
           href={navLink.url}
           target={navLink.newTab ? "_blank" : "_self"}
         >
-          <a className="nav_links_item">{navLink.title}</a>
+          <a
+            className="nav_links_item"
+            target={navLink.newTab ? "_blank" : "_self"}
+          >
+            {navLink.title}
+          </a>
         </Link>
       ))}
     </ul>
