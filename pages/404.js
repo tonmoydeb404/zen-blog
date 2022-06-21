@@ -8,7 +8,7 @@ const Error404 = () => {
       <Head>
         <title>{`404 Error - ${siteInfo.fullName}`}</title>
       </Head>
-      <ErrorPage />;
+      <ErrorPage />
     </>
   );
 };
