@@ -10,7 +10,7 @@
   }
 
   &_body {
-    @apply flex-1 w-full flex self-center flex-col min-h-full;
+    @apply flex-1 w-full flex self-stretch flex-col min-h-full;
   }
 
   &_tags {

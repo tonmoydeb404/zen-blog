@@ -32,7 +32,7 @@
     }
 
     blockquote {
-      @apply p-5 bg-gray-200 border-l-8 border-green-600 rounded-tr rounded-br;
+      @apply p-5 bg-gray-200 dark:bg-gray-800 border-l-8 border-green-600 rounded-tr rounded-br;
     }
 
     p {
@@ -136,17 +136,23 @@
   }
 
   &_share {
+    @apply box flex flex-col sm:flex-row justify-center sm:justify-start text-center sm:text-left gap-4 items-center px-5 py-4;
+
     &_list {
-      @apply flex flex-wrap gap-4 items-center px-5 py-4 box;
+      @apply flex flex-row gap-4 items-center;
     }
 
     &_title {
-      @apply text-lg font-medium mr-auto flex items-center gap-2;
+      @apply text-lg font-medium sm:mr-auto flex items-center gap-2;
+    }
+
+    &_links {
+      @apply box p-2 hover:text-green-600;
     }
   }
 
   &_author {
-    @apply flex items-center gap-4 bg-white px-4 py-5 border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700;
+    @apply flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 bg-white px-4 py-5 border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700 text-center sm:text-left;
 
     &_media {
       @apply relative w-36 h-36 rounded-lg overflow-hidden;

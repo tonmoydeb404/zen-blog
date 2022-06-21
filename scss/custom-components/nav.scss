@@ -34,12 +34,16 @@
   }
 
   &_search {
+    &_form {
+      @apply w-10/12 sm:w-[500px];
+    }
+
     &_btn {
       @apply text-2xl p-1 rounded-full hover:bg-gray-100 text-gray-900 dark:text-blue-600 hover:dark:bg-blue-600/20 duration-200;
     }
 
     &_modal {
-      @apply fixed w-full min-h-screen top-0 left-0 flex items-center justify-center flex-col bg-black/40 backdrop-blur overflow-hidden duration-200;
+      @apply fixed w-full min-h-screen top-0 left-0 flex items-center flex-col bg-black/40 backdrop-blur overflow-hidden duration-200 pt-36;
 
       &.show {
         @apply opacity-100 pointer-events-auto;
@@ -51,7 +55,7 @@
     }
 
     &_input {
-      @apply outline-none w-[500px] bg-transparent;
+      @apply outline-none w-full bg-transparent;
 
       &_box {
         @apply flex items-center px-5 py-3 gap-2 text-base box;

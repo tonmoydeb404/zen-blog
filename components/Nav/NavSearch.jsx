@@ -20,11 +20,23 @@ const NavSearch = () => {
     setModal(false);
   };
 
+  // handle modal change
   useEffect(() => {
     if (modal && searchRef.current) {
       searchRef.current.focus();
     }
   }, [modal]);
+
+  // mount operations
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        setModal(false);
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   return (
     <>

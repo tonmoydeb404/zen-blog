@@ -25,8 +25,9 @@ const CommentForm = ({ slug = null }) => {
   // theme for captcha
   const { theme } = useThemeContext();
 
-  // get saved comment data from localstorage
+  // handle mount opertaions
   useEffect(() => {
+    // get saved comment data from localstorage
     let localCommentInfo = localStorage.getItem("zen-blog-comment-data");
     if (localCommentInfo !== null) {
       const localCommentValue = JSON.parse(localCommentInfo);

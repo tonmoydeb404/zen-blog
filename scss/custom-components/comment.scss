@@ -6,7 +6,7 @@
   }
 
   &_input {
-    @apply px-4 py-3 rounded-sm bg-gray-900/5 outline-none ring-1 ring-transparent focus:ring-green-600 dark:bg-gray-900/50;
+    @apply px-4 py-3 rounded-sm bg-gray-900/5 outline-none ring-1 ring-transparent focus:ring-green-600 dark:bg-gray-900/50 col-span-2 sm:col-span-1;
   }
 
   &_textarea {
