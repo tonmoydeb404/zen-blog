@@ -50,8 +50,8 @@ export const BookmarksContextProvider = ({ children }) => {
       setBookmarksData((prevState) => [data, ...prevState]);
   };
 
-  // remove bookmarks
-  const removeBookmarks = (id) => {
+  // remove bookmark
+  const removeBookmark = (id) => {
     const filteredBookmarks = bookmarksData.filter(
       (bookmark) => bookmark.id !== id
     );
@@ -60,7 +60,7 @@ export const BookmarksContextProvider = ({ children }) => {
 
   // memorize the values
   const value = useMemo(
-    () => ({ bookmarksData, addBookmarks, removeBookmarks }),
+    () => ({ bookmarksData, addBookmarks, removeBookmark }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [bookmarksData]
   );

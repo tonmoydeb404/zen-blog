@@ -3,7 +3,7 @@ import { useBookmarks } from "../../contexts/BookmarksContext";
 import BookmarksItem from "./BookmarksItem";
 
 const Bookmarks = () => {
-  const { bookmarksData } = useBookmarks();
+  const { bookmarksData, removeBookmark } = useBookmarks();
 
   return (
     <div className="widget bookmarks">
@@ -17,6 +17,8 @@ const Bookmarks = () => {
               text={bookmark.text}
               slug={bookmark.slug}
               key={bookmark.id}
+              id={bookmark.id}
+              removeBookmark={removeBookmark}
             />
           ))
         ) : (

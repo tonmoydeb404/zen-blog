@@ -1,6 +1,6 @@
 .bookmarks {
   &_item {
-    @apply px-3 py-3 border border-gray-200 dark:border-gray-700;
+    @apply px-3 py-3 border border-gray-200 dark:border-gray-700 relative;
 
     &_title {
       @apply text-base font-semibold mb-2;
@@ -8,6 +8,10 @@
 
     &_text {
       @apply text-xs truncate;
+    }
+
+    &_remove {
+      @apply absolute top-0 right-0 text-sm p-1 text-red-600 hover:bg-red-600/20 active:bg-red-500 active:text-white duration-200 md:invisible group-hover:visible;
     }
   }
 }
