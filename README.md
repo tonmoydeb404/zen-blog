@@ -1,8 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zen Blog
 
-## Getting Started
+This is a simple blog application. Which is developed with [Next.js](https://nextjs.org/) and [GraphCMS](https://graphcms.com/). This is a practice project where i tried implement all neccessary features that a blog should have.
+here user can
 
-First, run the development server:
+- read articles
+- comment on a article (captcha verified)
+- bookmark a article
+- view articles by category
+- search for articles
+
+I used next js incremental static site generation feature to keep blog up to date with CMS and make blog more seo friendly. to make the blog ui i've used the Tailwindcss.
+
+Live at: [https://zenlab.vercel.app](https://zenlab.vercel.app)
+
+### Getting Started
+
+clone this project to your machine and run following commands.
 
 ```bash
 npm run dev
@@ -12,23 +25,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Information
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- To use this code you will need a headless CMS for providing necessery data. in my case this is GraphCMS. use this link to clone my graphcms project with content models.
+  [![Clone project](https://graphcms.com/button)](https://app.graphcms.com/clone/e3d3553bf02e46b4b05750a6308540a4?name=ZenBlog)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- You need to setup some environment variables to make this project workable
 
-## Learn More
+### Tech I Used:
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org/)
+- [GraphCMS](https://graphcms.com/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> ### Developer Contacts
+>
+> - Tonmoy Deb - [https://tonmoydeb.com](https://tonmoydeb.com)
+> - Email - [tonmoydeb404@gmail.com](tonmoydeb404@gmail.com])
