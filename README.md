@@ -11,7 +11,7 @@ here user can
 
 I used next js incremental static site generation feature to keep blog up to date with CMS and make blog more seo friendly. to make the blog ui i've used the Tailwindcss.
 
-Live at: [https://zenlab.vercel.app](https://zenlab.vercel.app)
+Live at: [https://zenlab.vercel.app](https://zenblog.vercel.app)
 
 ### Getting Started
 
