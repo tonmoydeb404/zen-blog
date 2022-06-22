@@ -1,33 +1,18 @@
-import { useEffect, useState } from "react";
-import { getCategories } from "../services";
+import request from "graphql-request";
+import useSWR from "swr";
+import { getCategoriesQuery } from "../lib/graphql";
+
+const CMS_ENDPOINT = process.env.CMS_ENDPOINT;
+
+const fetcher = (query) => request(CMS_ENDPOINT, query);
 
 const useCategories = () => {
-  const [categoriesData, setCategoriesData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [errors, setErrors] = useState({});
+  const { data, error } = useSWR(getCategoriesQuery, fetcher);
 
-  // load categories
-  useEffect(() => {
-    const getCategoriesFunc = async () => {
-      try {
-        setLoading(true);
-        setErrors({});
-        const data = await getCategories();
-        setCategoriesData(data.categories);
-        setLoading(false);
-        setErrors({});
-      } catch (error) {
-        setErrors(error);
-        setLoading(false);
-      }
-    };
-
-    getCategoriesFunc();
-  }, []);
   return {
-    categoriesData,
-    categoriesLoading: loading,
-    categoriesErrors: errors,
+    categoriesData: data?.categories || [],
+    categoriesLoading: !data && !error,
+    categoriesErrors: error,
   };
 };
 
