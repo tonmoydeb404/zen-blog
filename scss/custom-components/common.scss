@@ -7,9 +7,25 @@
 
   &_body {
     @apply flex-col gap-3 flex;
+
+    &.loading {
+      @apply animate-pulse;
+
+      & * {
+        @apply w-full h-7 bg-gray-700 rounded;
+      }
+    }
   }
 
-  &_none {
+  &_alert {
     @apply text-sm text-gray-500 flex flex-col items-center gap-1 py-2 dark:text-gray-300;
+
+    &_icon {
+      @apply text-2xl;
+    }
+
+    &.error &_icon {
+      @apply text-red-500;
+    }
   }
 }
