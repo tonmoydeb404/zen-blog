@@ -1,33 +1,20 @@
 import request, { gql } from "graphql-request";
+import {
+  getCategoriesQuery,
+  getCategoryQuery,
+  getPostQuery,
+  getPostsQuery,
+  getSearchPostsQuery,
+  getSimilarPostsQuery,
+} from "../lib/graphql";
 
 const CMS_ENDPOINT = process.env.CMS_ENDPOINT;
 
 // get posts from cms
-export const getPosts = async () => {
-  // query document for request
-  const query = gql`
-    query getPosts() {
-      posts(orderBy: createdAt_DESC,) {
-        id
-        slug
-        title
-        featured
-        description
-        createdAt
-        tags
-        thumbnail {
-          url
-          width
-          height
-        }
-        category {
-          id
-          slug
-          title
-        }
-      }
-    }
-  `;
+export const getPosts = async (query = getPostsQuery) => {
+  // validate arguments
+  if (!query)
+    return { isEror: true, error: { message: "arguments are invalid" } };
 
   try {
     const data = await request({
@@ -48,38 +35,15 @@ export const getPosts = async () => {
 };
 
 // get similar posts from cms
-export const getSimilarPosts = async (tags, slug, limit) => {
-  if (!tags || !slug || !limit)
+export const getSimilarPosts = async (
+  tags,
+  slug,
+  limit,
+  query = getSimilarPostsQuery
+) => {
+  // validate arguments
+  if (!tags || !slug || !limit || !query)
     return { isEror: true, error: { message: "arguments are invalid" } };
-
-  // query document for request
-  const query = gql`
-    query getSmiliarPosts($tags: [String!], $slug: String!, $last: Int! = 3) {
-      posts(
-        orderBy: createdAt_DESC
-        last: $last
-        where: { tags_contains_some: $tags, slug_not: $slug }
-      ) {
-        id
-        slug
-        title
-        featured
-        description
-        createdAt
-        tags
-        thumbnail {
-          url
-          width
-          height
-        }
-        category {
-          id
-          slug
-          title
-        }
-      }
-    }
-  `;
 
   try {
     const data = await request({
@@ -105,54 +69,10 @@ export const getSimilarPosts = async (tags, slug, limit) => {
 };
 
 // get a specific post
-export const getPost = async (slug) => {
-  if (!slug)
+export const getPost = async (slug, query = getPostQuery) => {
+  // validate arguments
+  if (!slug || !query)
     return { isEror: true, error: { message: "arguments are invalid" } };
-
-  // query document for request
-  const query = gql`
-    query getPost($slug: String!) {
-      post(where: { slug: $slug }) {
-        id
-        slug
-        title
-        featured
-        description
-        createdAt
-        tags
-        thumbnail {
-          url
-          width
-          height
-        }
-        content {
-          html
-          raw
-        }
-        authorInfo {
-          authorBio
-          authorImage {
-            url
-            width
-            height
-          }
-          authorName
-          authorUrl
-        }
-        category {
-          id
-          slug
-          title
-        }
-      }
-      comments(orderBy: createdAt_ASC, where: { post: { slug: $slug } }) {
-        id
-        name
-        text
-        createdAt
-      }
-    }
-  `;
 
   try {
     const data = await request({
@@ -177,37 +97,10 @@ export const getPost = async (slug) => {
 };
 
 // get a specific category
-export const getCategory = async (slug) => {
-  if (!slug)
+export const getCategory = async (slug, query = getCategoryQuery) => {
+  // validate arguments
+  if (!slug || !query)
     return { isEror: true, error: { message: "arguments are invalid" } };
-
-  // query document for request
-  const query = gql`
-    query getCategory($slug: String!) {
-      category(where: { slug: $slug }) {
-        id
-        title
-        slug
-        posts(orderBy: createdAt_DESC) {
-          id
-          slug
-          title
-          featured
-          createdAt
-          thumbnail {
-            url
-            width
-            height
-          }
-          category {
-            id
-            slug
-            title
-          }
-        }
-      }
-    }
-  `;
 
   try {
     const data = await request({
@@ -233,20 +126,10 @@ export const getCategory = async (slug) => {
 };
 
 // get all categories
-export const getCategories = async () => {
-  // query document for request
-  const query = gql`
-    query getCategories {
-      categories(orderBy: createdAt_DESC) {
-        id
-        slug
-        title
-        posts {
-          slug
-        }
-      }
-    }
-  `;
+export const getCategories = async (query = getCategoriesQuery) => {
+  // validate arguments
+  if (!query)
+    return { isEror: true, error: { message: "arguments are invalid" } };
 
   try {
     const data = await request({
@@ -267,34 +150,13 @@ export const getCategories = async () => {
 };
 
 // get post by search query
-export const getSearchPosts = async (searchQuery) => {
-  if (!searchQuery)
+export const getSearchPosts = async (
+  searchQuery,
+  query = getSearchPostsQuery
+) => {
+  // validate arguments
+  if (!searchQuery || !query)
     return { isEror: true, error: { message: "arguments are invalid" } };
-
-  // query document for request
-  const query = gql`
-    query getSearchPosts($searchQuery: String!) {
-      posts(orderBy: createdAt_DESC, where: { _search: $searchQuery }) {
-        id
-        slug
-        title
-        featured
-        description
-        createdAt
-        tags
-        thumbnail {
-          url
-          width
-          height
-        }
-        category {
-          id
-          slug
-          title
-        }
-      }
-    }
-  `;
 
   try {
     const data = await request({
@@ -318,7 +180,7 @@ export const getSearchPosts = async (searchQuery) => {
 };
 
 // submit comment
-export const submitComment = async (commentDetails, postSlug) => {
+export const submitComment = async (commentDetails) => {
   if (!commentDetails || !postSlug)
     return { isEror: true, error: { message: "arguments are invalid" } };
 
