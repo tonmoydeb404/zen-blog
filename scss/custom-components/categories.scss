@@ -7,7 +7,11 @@
     }
 
     &_counter {
-      @apply ml-auto px-1 text-xs font-bold py-1 text-gray-100 inline-block bg-green-600 min-w-[25px] text-center;
+      @apply ml-auto px-1 text-xs font-bold py-1 text-gray-100 inline-block bg-green-600 min-w-[25px] text-center rounded-sm;
+
+      &.none {
+        @apply bg-gray-500;
+      }
     }
   }
 }

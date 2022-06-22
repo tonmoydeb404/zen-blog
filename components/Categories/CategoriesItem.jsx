@@ -11,11 +11,11 @@ const CategoriesItem = ({ title, slug, posts }) => {
         </a>
       </Link>
 
-      {posts && posts.length && (
-        <span className="categories_item_counter">
-          {posts.length < 10 ? `0${posts.length}` : posts.length}
-        </span>
-      )}
+      <span
+        className={`categories_item_counter ${posts.length < 1 ? "none" : ""}`}
+      >
+        {posts.length < 10 ? `0${posts.length}` : posts.length}
+      </span>
     </div>
   );
 };
