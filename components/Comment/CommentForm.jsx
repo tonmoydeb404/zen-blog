@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { CgSpinner } from "react-icons/cg";
 import { MdCheck, MdWarning } from "react-icons/md";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { submitComment } from "../../services";
@@ -89,11 +90,16 @@ const CommentForm = ({ slug = null }) => {
     };
 
     try {
+      // show user that comment is submiting
+      setCommentStatus({
+        message: "submitting your comment",
+        status: "loading",
+      });
       // submit comment
       const result = await submitComment(commentObj, slug);
 
       // check comment created or not
-      if (!result.comment?.id) throw { message: "comment not created" };
+      if (!result.id) throw { message: "comment not created" };
       // save comment data in local storage on success
       setLocalCommentData({ name: commentName, email: commentEmail });
       // show the success message
@@ -142,6 +148,7 @@ const CommentForm = ({ slug = null }) => {
           value={commentText}
           placeholder={"Comment"}
           onChange={(e) => setCommentText(e.target.value)}
+          required
         ></textarea>
 
         {recaptchaSiteKey ? (
@@ -161,13 +168,18 @@ const CommentForm = ({ slug = null }) => {
         <button
           className="commentform_btn col-span-2 md:col-span-1"
           type="submit"
+          disabled={commentStatus.status === "loading"}
         >
           Submit
         </button>
 
         {commentStatus.message?.length ? (
           <p className={`commentform_status ${commentStatus.status}`}>
-            {commentStatus.status === "error" ? <MdWarning /> : <MdCheck />}
+            {commentStatus.status === "error" ? <MdWarning /> : null}
+            {commentStatus.status === "success" ? <MdCheck /> : null}
+            {commentStatus.status === "loading" ? (
+              <CgSpinner className="animate-spin" />
+            ) : null}
             {commentStatus.message}
           </p>
         ) : null}
