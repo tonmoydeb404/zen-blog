@@ -5,8 +5,6 @@ import { share, siteInfo } from "../../lib/constant";
 const PostDetailsFooter = () => {
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <div className="postdetails_footer">
       <div className="postdetails_share">

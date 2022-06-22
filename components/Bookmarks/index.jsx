@@ -22,10 +22,8 @@ const Bookmarks = () => {
             />
           ))
         ) : (
-          <p className="widget_none">
-            <span className="text-2xl">
-              <BiSad />
-            </span>
+          <p className="widget_alert none">
+            <BiSad className="widget_alert_icon" />
             no bookmarks available
           </p>
         )}
