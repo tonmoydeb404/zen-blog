@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     domains: [
       "media.graphassets.com",
-      "via.placeholder.com",
+      "dummyimage.com",
       "avatars.dicebear.com",
     ],
   },

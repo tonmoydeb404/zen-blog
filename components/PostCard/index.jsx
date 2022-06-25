@@ -15,7 +15,8 @@ const PostCard = ({
       <div className="postcard_media ">
         <Image
           src={
-            thumbnail || "https://via.placeholder.com/250?text=Image+not+found"
+            thumbnail ||
+            "https://dummyimage.com/600x400/6e6e6e/ffffff&text=image+not+found"
           }
           alt={title}
           layout="fill"
