@@ -45,7 +45,7 @@ const PostCardBody = ({
       <p className="postcard_text">{text}</p>
 
       <div className="postcard_actions">
-        <Link href={`/${slug}`}>
+        <Link href={`/posts/${slug}`}>
           <a className="postcard_btn">Read More</a>
         </Link>
 
