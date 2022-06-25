@@ -180,7 +180,7 @@ export const getSearchPosts = async (
 };
 
 // submit comment
-export const submitComment = async (commentDetails) => {
+export const submitComment = async (commentDetails, postSlug) => {
   if (!commentDetails || !postSlug)
     return { isEror: true, error: { message: "arguments are invalid" } };
 
